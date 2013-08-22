@@ -1,8 +1,35 @@
 require './Hangman'
 describe Hangman   do
   subject(:hangman){ Hangman.new("elephantisis")}
-  it "should accept only 1 character"
+
+  # complete
+
+
+  context "#play" do
+
+    it "should accept only alphabet" do
+      hangman.userInput = 'aa'
+      expect(hangman.userInput.match(/^[[:alpha:]]+$/).nil? ).to eq(false)
+    end
+
+    it "for correct choice full word" do
+      hangman.userInput = 'elephantisis'
+      hangman.play
+      hangman.counter.should == 12
+    end
+
+    it "for correct choice single character" do
+      hangman.userInput = 'e'
+      hangman.play
+      #hangman.counter.should ==
+    end
+
+
+  end
+
+
   it "should accept alphabet"
+
   context "#initialize" do
     it "counter should be 0" do
       expect( hangman.counter ).to eq(0)
@@ -12,7 +39,7 @@ describe Hangman   do
     end
     it "word_placeholder should be array of '_'" do
       expect(hangman.word_placeholder).to  eq(['_']*12)
-  end
+    end
     it "word_placeholder length should be length of the word" do
       expect( hangman.word_placeholder.length).to eq(12)
     end
@@ -26,21 +53,39 @@ describe Hangman   do
       expect( hangman.wrong_choice.length).to eq(0)
     end
   end
+
+
+
   context "for correct choice" do
+    it "counter should be increment" do
+      expect(hangman.wrong_choice.length).to eql(0)
+    end
 
   end
+
   context "for wrong choice" do
+    it "missed_counter should be increment" do
+      expect(hangman.wrong_choice.length).to eql(0)
+    end
 
   end
+
   context "for repeated character" do
 
   end
+
   context "result" do
-      context "win" do
-
+    context "win" do
+      it "counter should be equal word length" do
+        expect(hangman.counter).to eq(12)
       end
-      context "loss" do
 
+    end
+    context "loss" do
+      it "missed_counter should be equal 6" do
+        expect( hangman.missed_counter).to eq(6)
       end
+
+    end
   end
 end
