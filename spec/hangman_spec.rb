@@ -8,45 +8,45 @@ describe Hangman   do
   context "#play" do
 
     it "should accept only alphabet" do
-      hangman.userInput = 'aa'
-      expect(hangman.userInput.match(/^[[:alpha:]]+$/).nil? ).to eq(false)
+      hangman.user_input = 'aa'
+      expect(hangman.user_input.match(/^[[:alpha:]]+$/).nil? ).to eq(false)
     end
 
     it "for correct choice full word" do
-      hangman.userInput = 'elephantisis'
+      hangman.user_input = 'elephantisis'
       hangman.play
       hangman.counter.should == 12
     end
 
     it "for correct choice single character" do
-      hangman.userInput = 'h'
+      hangman.user_input = 'h'
       temp = hangman.counter
       hangman.play
       (hangman.counter - temp).should == 1
     end
 
     it "for wrong choice single character" do
-      hangman.userInput = 'k'
+      hangman.user_input = 'k'
       temp = hangman.missed_counter
       hangman.play
       (hangman.missed_counter - temp).should == 1
     end
 
     it "repeated characters count should be added to counter" do
-      hangman.userInput = 'e'
+      hangman.user_input = 'e'
       temp = hangman.counter
       hangman.play
       (hangman.counter - temp).should == 2
     end
 
     it 'correct input alphabet should exist in word_placeholder' do
-      hangman.userInput = 'l'
+      hangman.user_input = 'l'
       hangman.play
       hangman.word_placeholder.index('l').should_not == nil
     end
 
     it 'user input should have entry in previous_choice' do
-      hangman.userInput = 'kk'
+      hangman.user_input = 'kk'
       hangman.play
       hangman.previous_choice.index('kk').should_not == nil
     end
@@ -54,7 +54,6 @@ describe Hangman   do
   end
 
 
-  it "should accept alphabet"
 
   context "#initialize" do
     it "counter should be 0" do
