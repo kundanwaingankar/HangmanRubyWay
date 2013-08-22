@@ -40,15 +40,15 @@ describe Hangman   do
     end
 
     it 'correct input alphabet should exist in word_placeholder' do
-      hangman.user_input = 'l'
+      hangman.user_input = 'n'
       hangman.play
-      hangman.word_placeholder.index('l').should_not == nil
+      hangman.word_placeholder.index('n').should_not == nil
     end
 
     it 'user input should have entry in previous_choice' do
-      hangman.user_input = 'kk'
+      hangman.user_input = 'jj'
       hangman.play
-      hangman.previous_choice.index('kk').should_not == nil
+      hangman.previous_choice.index('jj').should_not == nil
     end
 
   end
