@@ -1,13 +1,13 @@
 class Hangman
 
-  attr_reader :counter, :word_placeholder, :wrong_choice, :missed_counter#, :game_word
+  attr_reader :counter, :word_placeholder, :previous_choice, :missed_counter  #, :game_word
   attr_accessor :userInput
   def initialize(word)
     @word = word
     @counter = 0
     @missed_counter = 0
     #	@game_word = word
-    @wrong_choice = []
+    @previous_choice = []
     @word_placeholder = Array.new(word.length, '_')
   end
 
@@ -19,11 +19,11 @@ class Hangman
         #result(@counter, @missed_counter)
       else
         @missed_counter += 1
-        @wrong_choice.push(userInput)
+        @previous_choice.push(userInput)
       end
     else
-      temp= @word.split("")
-      found_count = temp.each_index.select{|i| temp.casecmp(userInput) == 0}
+      temp = @word.split("")
+      found_count = temp.each_index.select{|i| temp[i].casecmp(userInput) == 0}
       if found_count.length > 0
         @counter += found_count.length
         found_count.each do |index|
@@ -34,8 +34,7 @@ class Hangman
       end
 
     end
-
-    result
+#    result
   end
 
   def result
